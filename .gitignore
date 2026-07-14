@@ -1,0 +1,5 @@
+# Raw source photos (large, not used by the deployed site — only assets/img is referenced)
+Bilder/
+
+# Local tooling config
+.claude/
