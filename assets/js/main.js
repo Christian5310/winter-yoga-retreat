@@ -14,7 +14,8 @@
 
 (function () {
   var galleryImgs = Array.prototype.slice.call(document.querySelectorAll('.gallery img'));
-  if (!galleryImgs.length) return;
+  var priceCards = Array.prototype.slice.call(document.querySelectorAll('.price-card[data-lightbox-img]'));
+  if (!galleryImgs.length && !priceCards.length) return;
 
   var lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
@@ -37,6 +38,7 @@
   var prevBtn = lightbox.querySelector('.lightbox-prev');
   var nextBtn = lightbox.querySelector('.lightbox-next');
   var currentIndex = 0;
+  var galleryMode = false;
   var lastFocused = null;
 
   function captionFor(img) {
@@ -52,7 +54,11 @@
     captionEl.textContent = captionFor(img);
   }
 
-  function open(index) {
+  function openGallery(index) {
+    galleryMode = true;
+    lightbox.classList.remove('is-single');
+    prevBtn.style.display = '';
+    nextBtn.style.display = '';
     lastFocused = document.activeElement;
     show(index);
     lightbox.classList.add('is-open');
@@ -61,8 +67,24 @@
     closeBtn.focus();
   }
 
+  function openSingle(src, alt, caption) {
+    galleryMode = false;
+    lightbox.classList.add('is-single');
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+    lastFocused = document.activeElement;
+    imgEl.src = src;
+    imgEl.alt = alt || '';
+    captionEl.textContent = caption || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
   function close() {
     lightbox.classList.remove('is-open');
+    lightbox.classList.remove('is-single');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
@@ -72,18 +94,34 @@
     img.setAttribute('tabindex', '0');
     img.setAttribute('role', 'button');
     img.setAttribute('aria-label', 'Enlarge image: ' + (img.alt || ''));
-    img.addEventListener('click', function () { open(index); });
+    img.addEventListener('click', function () { openGallery(index); });
     img.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        open(index);
+        openGallery(index);
+      }
+    });
+  });
+
+  priceCards.forEach(function (card) {
+    var src = card.getAttribute('data-lightbox-img');
+    var alt = card.getAttribute('data-lightbox-alt') || '';
+    var caption = (card.querySelector('.room-name') || {}).textContent || alt;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'View room photo: ' + caption);
+    card.addEventListener('click', function () { openSingle(src, alt, caption); });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openSingle(src, alt, caption);
       }
     });
   });
 
   closeBtn.addEventListener('click', close);
-  prevBtn.addEventListener('click', function () { show(currentIndex - 1); });
-  nextBtn.addEventListener('click', function () { show(currentIndex + 1); });
+  prevBtn.addEventListener('click', function () { if (galleryMode) show(currentIndex - 1); });
+  nextBtn.addEventListener('click', function () { if (galleryMode) show(currentIndex + 1); });
 
   lightbox.addEventListener('click', function (e) {
     if (e.target === lightbox) close();
@@ -92,8 +130,8 @@
   document.addEventListener('keydown', function (e) {
     if (!lightbox.classList.contains('is-open')) return;
     if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') show(currentIndex - 1);
-    if (e.key === 'ArrowRight') show(currentIndex + 1);
+    if (galleryMode && e.key === 'ArrowLeft') show(currentIndex - 1);
+    if (galleryMode && e.key === 'ArrowRight') show(currentIndex + 1);
   });
 })();
 
