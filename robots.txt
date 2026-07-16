@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
+# Explicit allow rules for AI/GEO crawlers (generative answer engines)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://christian5310.github.io/winter-yoga-retreat/sitemap.xml
