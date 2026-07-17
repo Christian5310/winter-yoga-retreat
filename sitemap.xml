@@ -94,4 +94,34 @@
     <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://christian5310.github.io/winter-yoga-retreat/impressum.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://christian5310.github.io/winter-yoga-retreat/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://christian5310.github.io/winter-yoga-retreat/en/imprint.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://christian5310.github.io/winter-yoga-retreat/en/imprint.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://christian5310.github.io/winter-yoga-retreat/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://christian5310.github.io/winter-yoga-retreat/en/imprint.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://christian5310.github.io/winter-yoga-retreat/datenschutz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://christian5310.github.io/winter-yoga-retreat/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://christian5310.github.io/winter-yoga-retreat/en/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://christian5310.github.io/winter-yoga-retreat/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://christian5310.github.io/winter-yoga-retreat/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://christian5310.github.io/winter-yoga-retreat/en/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
 </urlset>

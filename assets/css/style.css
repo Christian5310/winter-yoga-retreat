@@ -535,6 +535,60 @@ section{padding:100px 0;}
 .contact-alt{font-size:14px; color:var(--ink-faint);}
 .contact-alt a{text-decoration:underline; text-underline-offset:3px;}
 
+/* ---------- FLOATING CONTACT BUTTON ---------- */
+.contact-fab{position:fixed; right:22px; bottom:22px; z-index:90; display:flex; flex-direction:column; align-items:flex-end; gap:12px;}
+.contact-fab-options{
+  display:flex; flex-direction:column; align-items:flex-end; gap:10px;
+  margin-bottom:2px;
+}
+.contact-fab-option{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+  background:var(--card-bg); border:1px solid var(--card-border); color:var(--snow);
+  padding:10px 18px 10px 10px; border-radius:999px;
+  box-shadow:0 10px 24px -6px rgba(0,0,0,.5);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  opacity:0; transform:translateY(10px) scale(.9); pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease, border-color .2s ease;
+}
+.contact-fab.is-open .contact-fab-option{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+.contact-fab.is-open .contact-fab-option:nth-child(1){transition-delay:.05s;}
+.contact-fab.is-open .contact-fab-option:nth-child(2){transition-delay:0s;}
+.contact-fab-option:hover, .contact-fab-option:focus-visible{border-color:rgba(231,169,63,.5);}
+.contact-fab-option .icon-circle{
+  width:34px; height:34px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+}
+.contact-fab-option .icon-circle svg{width:18px; height:18px; display:block;}
+.contact-fab-option.is-whatsapp .icon-circle{background:#25D366;}
+.contact-fab-option.is-email .icon-circle{background:var(--glow);}
+.contact-fab-option .label{font-size:14.5px; font-weight:500; white-space:nowrap;}
+
+.contact-fab-main{
+  width:58px; height:58px; border-radius:50%; flex:none;
+  background:var(--glow); border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 26px -4px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.contact-fab-main:hover, .contact-fab-main:focus-visible{
+  transform:scale(1.08);
+  box-shadow:0 14px 32px -4px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.12);
+}
+.contact-fab-main svg{width:26px; height:26px; display:block; color:#241906;}
+.contact-fab-main .icon-close{display:none;}
+.contact-fab.is-open .contact-fab-main .icon-chat{display:none;}
+.contact-fab.is-open .contact-fab-main .icon-close{display:block;}
+.contact-fab.is-open .contact-fab-main{transform:rotate(0deg);}
+
+@media(max-width:600px){
+  .contact-fab{right:16px; bottom:16px;}
+  .contact-fab-main{width:52px; height:52px;}
+  .contact-fab-main svg{width:23px; height:23px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .contact-fab-main, .contact-fab-option{transition:none;}
+}
+
 /* ---------- FOOTER ---------- */
 footer{padding:56px 0 40px; border-top:1px solid var(--line);}
 .footer-grid{
