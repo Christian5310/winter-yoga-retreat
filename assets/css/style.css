@@ -586,6 +586,7 @@ section{padding:100px 0;}
 .chatbot-option .label{font-size:14.5px; font-weight:500; white-space:nowrap;}
 
 .chatbot-toggle{
+  position:relative;
   width:58px; height:58px; border-radius:50%; flex:none;
   background:var(--glow); border:none; cursor:pointer;
   display:flex; align-items:center; justify-content:center;
@@ -595,6 +596,16 @@ section{padding:100px 0;}
 .chatbot-toggle:hover, .chatbot-toggle:focus-visible{
   transform:scale(1.08);
   box-shadow:0 14px 32px -4px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.12);
+}
+.chatbot-toggle::before{
+  content:''; position:absolute; inset:0; border-radius:50%;
+  background:var(--glow); z-index:-1;
+  animation:chatbot-glow-pulse 2.6s ease-out infinite;
+}
+.chatbot-widget.is-open .chatbot-toggle::before{display:none;}
+@keyframes chatbot-glow-pulse{
+  0%{transform:scale(1); opacity:.55;}
+  100%{transform:scale(1.7); opacity:0;}
 }
 .chatbot-toggle svg{width:26px; height:26px; display:block; color:#241906;}
 .chatbot-toggle .icon-close{display:none;}
@@ -609,6 +620,7 @@ section{padding:100px 0;}
 }
 @media (prefers-reduced-motion: reduce){
   .chatbot-toggle, .chatbot-panel, .chatbot-option{transition:none;}
+  .chatbot-toggle::before{animation:none; display:none;}
 }
 
 /* ---------- FOOTER ---------- */
