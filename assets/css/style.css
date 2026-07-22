@@ -609,13 +609,8 @@ section{padding:100px 0;}
 }
 .chatbot-toggle svg{width:26px; height:26px; display:block; color:#241906;}
 .chatbot-toggle .icon-close{display:none;}
-.chatbot-toggle .icon-chat{animation:chatbot-icon-flicker 2.6s ease-in-out infinite;}
 .chatbot-widget.is-open .chatbot-toggle .icon-chat{display:none;}
 .chatbot-widget.is-open .chatbot-toggle .icon-close{display:block;}
-@keyframes chatbot-icon-flicker{
-  0%, 100%{color:#241906;}
-  50%{color:#fff;}
-}
 
 @media(max-width:600px){
   .chatbot-widget{right:16px; bottom:16px;}
@@ -626,7 +621,6 @@ section{padding:100px 0;}
 @media (prefers-reduced-motion: reduce){
   .chatbot-toggle, .chatbot-panel, .chatbot-option{transition:none;}
   .chatbot-toggle::before{animation:none; display:none;}
-  .chatbot-toggle .icon-chat{animation:none;}
 }
 
 /* ---------- FOOTER ---------- */
