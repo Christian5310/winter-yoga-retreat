@@ -197,3 +197,45 @@
     if (e.key === 'Escape') close();
   });
 })();
+
+(function () {
+  var widget = document.querySelector('.chatbot-widget');
+  if (!widget) return;
+  var toggleBtn = widget.querySelector('.chatbot-toggle');
+  var closeBtn = widget.querySelector('.chatbot-panel-close');
+  var iframe = widget.querySelector('.chatbot-iframe');
+  var loaded = false;
+
+  function loadIframe() {
+    if (loaded) return;
+    iframe.src = iframe.getAttribute('data-src');
+    loaded = true;
+  }
+  function close() {
+    widget.classList.remove('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  }
+  function toggle() {
+    var isOpen = widget.classList.toggle('is-open');
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) loadIframe();
+  }
+
+  toggleBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    toggle();
+  });
+
+  closeBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    close();
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!widget.contains(e.target)) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+})();
