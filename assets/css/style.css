@@ -547,7 +547,7 @@ section{padding:100px 0;}
   opacity:0; transform:translateY(10px) scale(.96); pointer-events:none;
   transition:opacity .22s ease, transform .22s ease;
 }
-.chatbot-widget.is-open .chatbot-panel{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+.chatbot-widget.show-panel .chatbot-panel{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
 .chatbot-iframe{width:100%; height:100%; border:0; display:block;}
 .chatbot-panel-close{
   position:absolute; top:10px; right:10px; z-index:1;
@@ -558,6 +558,32 @@ section{padding:100px 0;}
 }
 .chatbot-panel-close svg{width:16px; height:16px; display:block;}
 .chatbot-panel-close:hover, .chatbot-panel-close:focus-visible{background:rgba(10,10,10,.75);}
+
+.chatbot-options{
+  display:flex; flex-direction:column; align-items:flex-start; gap:10px;
+  margin-bottom:2px;
+}
+.chatbot-option{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+  background:var(--card-bg); border:1px solid var(--card-border); color:var(--snow);
+  padding:10px 18px 10px 10px; border-radius:999px; cursor:pointer; font:inherit;
+  box-shadow:0 10px 24px -6px rgba(0,0,0,.5);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  opacity:0; transform:translateY(10px) scale(.9); pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease, border-color .2s ease;
+}
+.chatbot-widget.is-open:not(.show-panel) .chatbot-option{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+.chatbot-widget.is-open:not(.show-panel) .chatbot-option:nth-child(1){transition-delay:.05s;}
+.chatbot-widget.is-open:not(.show-panel) .chatbot-option:nth-child(2){transition-delay:0s;}
+.chatbot-option:hover, .chatbot-option:focus-visible{border-color:rgba(231,169,63,.5);}
+.chatbot-option .icon-circle{
+  width:34px; height:34px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+}
+.chatbot-option .icon-circle svg{width:18px; height:18px; display:block;}
+.chatbot-option.is-whatsapp .icon-circle{background:#25D366;}
+.chatbot-option.is-chat .icon-circle{background:var(--glow);}
+.chatbot-option .label{font-size:14.5px; font-weight:500; white-space:nowrap;}
 
 .chatbot-toggle{
   width:58px; height:58px; border-radius:50%; flex:none;
@@ -582,7 +608,7 @@ section{padding:100px 0;}
   .chatbot-panel{height:min(640px, calc(100vh - 140px));}
 }
 @media (prefers-reduced-motion: reduce){
-  .chatbot-toggle, .chatbot-panel{transition:none;}
+  .chatbot-toggle, .chatbot-panel, .chatbot-option{transition:none;}
 }
 
 /* ---------- FOOTER ---------- */
