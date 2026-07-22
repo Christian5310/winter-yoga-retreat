@@ -171,34 +171,6 @@
 })();
 
 (function () {
-  var fab = document.querySelector('.contact-fab');
-  if (!fab) return;
-  var mainBtn = fab.querySelector('.contact-fab-main');
-
-  function close() {
-    fab.classList.remove('is-open');
-    mainBtn.setAttribute('aria-expanded', 'false');
-  }
-  function toggle() {
-    var isOpen = fab.classList.toggle('is-open');
-    mainBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  }
-
-  mainBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    toggle();
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!fab.contains(e.target)) close();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') close();
-  });
-})();
-
-(function () {
   var widget = document.querySelector('.chatbot-widget');
   if (!widget) return;
   var toggleBtn = widget.querySelector('.chatbot-toggle');
